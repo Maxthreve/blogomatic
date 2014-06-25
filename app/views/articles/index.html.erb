@@ -1,0 +1,25 @@
+<p class="navbar-text pull-right">
+<% if dietitian_signed_in? %>
+  Logged in as <strong><%= current_dietitian.email %></strong>.
+  <%= link_to 'Edit profile', edit_dietitian_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_dietitian_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Sign up", new_dietitian_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_dietitian_session_path, :class => 'navbar-link'  %>
+<% end %>
+<h1> Articles </h1>
+<%= link_to 'New Article', new_article_path %>
+<table>
+  <tr>
+    <th>Title</th>
+  </tr>
+
+<% @articles.each do |i|%>
+<tr>
+  <td><%= i.title%> </td>
+  <td><%= link_to 'Show', article_path(i) %> </td>
+  <td><%= link_to 'Edit', edit_article_path(i)%></td>
+  <td><%= button_to 'Destroy', article_url(i), method: :delete %></td>
+</tr>
+<%end%>
+</table>
