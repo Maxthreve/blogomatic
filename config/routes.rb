@@ -6,13 +6,20 @@ Blogomatic::Application.routes.draw do
     authenticated :dietitian do
       root :to => 'articles#index'
       resources :articles do
-        resources :tags
+
       end
-  end
+
+
+      resources :tags
+end
     unauthenticated :dietitian do
       root :to => 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+
+resources :articles , only: [] do
+  resources :articles_tags, only: [:create, :destroy]
+end
 
   # root to: "home#index"
   # You can have the root of your site routed with "root"

@@ -1,4 +1,82 @@
+<style>
+.center_image {
+  margin: auto;
+  width: 50%
+}
+
+h1{
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.article{
+width: 300px;
+margin: auto;
+float: left;
+padding: 10px;
+text-align: center;
+-moz-box-shadow: 0 0 10px #777777;
+-webkit-box-shadow: 0 0 10px #777777;
+box-shadow: 0 0 10px #777777;
+background-color: rgb(244, 141, 70);
+border-radius: 10px;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+background: rgb(241,101,48); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(241,101,48,1) 2%, rgba(244,141,70,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,rgba(241,101,48,1)), color-stop(100%,rgba(244,141,70,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f16530', endColorstr='#f48d46',GradientType=0 ); /* IE6-9 */
+margin: 10px;
+
+}
+
+.title{
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+
+}
+a {
+    padding: 10px 15px;
+    text-decoration: none;
+    background: #3E9E4C;
+    color: #FFF;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: solid 1px #20538D;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+a:hover {
+    background: #139247;
+    border: solid 1px #2A4E77;
+    text-decoration: none;
+}
+
+.create{
+ margin: 0 auto 0 auto;
+ width: 115px;
+ padding: 30px 30px;
+}
+
+</style>
 <p class="navbar-text pull-right">
+
 <% if dietitian_signed_in? %>
   Logged in as <strong><%= current_dietitian.email %></strong>.
   <%= link_to 'Edit profile', edit_dietitian_registration_path, :class => 'navbar-link' %> |
@@ -7,19 +85,18 @@
   <%= link_to "Sign up", new_dietitian_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login", new_dietitian_session_path, :class => 'navbar-link'  %>
 <% end %>
-<h1> Articles </h1>
-<%= link_to 'New Article', new_article_path %>
-<table>
-  <tr>
-    <th>Title</th>
-  </tr>
+<div class ="center_image"><img src="<%= image_path("Kindrd_food_notag_300.jpg") %>" width="640"  alt "the knindrd logo" align = "middle"/></div>
 
-<% @articles.each do |i|%>
-<tr>
-  <td><%= i.title%> </td>
-  <td><%= link_to 'Show', article_path(i) %> </td>
-  <td><%= link_to 'Edit', edit_article_path(i)%></td>
-  <td><%= button_to 'Destroy', article_url(i), method: :delete %></td>
-</tr>
-<%end%>
-</table>
+<h1> Articles </h1>
+<div class="create"><%= link_to 'New Article', new_article_path %></div>
+
+  <% @articles.each do |a|%>
+    <div class ="article">
+      <p class="title"><%= a.title %> </p>
+      <p><%= link_to 'Show', article_path(a) %>
+        <%= link_to 'Edit', edit_article_path(a)%>
+        <%= button_to 'Destroy', article_url(a), method: :delete %></p>
+
+    </div>
+
+  <%end%>

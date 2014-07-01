@@ -1,4 +1,6 @@
 <%if @article %>
+  <div class ="center_image"><img src="<%= image_path("Kindrd_food_notag_300.jpg") %>" width="640"  alt "the knindrd logo" align = "middle"/></div>
+
   <%= form_for @article do |f|%>
    <% if @article.errors.any?%>
    <div id="error_explanation">
@@ -11,17 +13,18 @@
        </ul>
      </div>
   <%end%>
+<div class="article">
   <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+
+    <%= f.text_field :title, placeholder: 'Title' %>
   </p>
   <p>
-    <%= f.label :content %> <br>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, placeholder: 'Let the blogging begin!' %>
   </p>
   <p>
   <%= f.submit %>
   </p>
+</div>
   <%end%>
 <%else%>
   <h1> No articles </h1>

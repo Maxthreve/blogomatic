@@ -1,29 +1,95 @@
+<style>
+.center_image {
+  margin: auto;
+  width: 50%
+}
+.center_text{
+  width: 300px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  -moz-box-shadow: 0 0 10px #777777;
+  -webkit-box-shadow: 0 0 10px #777777;
+  box-shadow: 0 0 10px #777777;
+  background-color: rgb(244, 141, 70);
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+background: rgb(241,101,48); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(241,101,48,1) 2%, rgba(244,141,70,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,rgba(241,101,48,1)), color-stop(100%,rgba(244,141,70,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f16530', endColorstr='#f48d46',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+@font-face {
+    font-family: 'veggieburgerbold';
+    src: url('veggibol-webfont.eot');
+    src: url('veggibol-webfont.eot?#iefix') format('embedded-opentype'),
+         url('veggibol-webfont.woff') format('woff'),
+         url('veggibol-webfont.ttf') format('truetype'),
+         url('veggibol-webfont.svg#veggieburgerbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'veggieburgerregular';
+    src: url('veggilig-webfont.eot');
+    src: url('veggilig-webfont.eot?#iefix') format('embedded-opentype'),
+         url('veggilig-webfont.woff') format('woff'),
+         url('veggilig-webfont.ttf') format('truetype'),
+         url('veggilig-webfont.svg#veggieburgerregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+h2{
+  text-align: center;
+  font-weight: bold;
+}
+
+</style>
+
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class ="center_image"><img src="<%= image_path("Kindrd_food_notag_300.jpg") %>" width="640"  alt "the knindrd logo" align = "middle"/></div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+  <div class="center_text">
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "off" %></div>
+
+    <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+    <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off" %></div>
+
+    <div><%= f.submit "Update" %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <h3>Cancel my account</h3>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+  <%= link_to "Back", :back %>
+</div>
