@@ -9,32 +9,6 @@ h1{
   font-weight: bold;
 }
 
-
-.article{
-width: 300px;
-margin: auto;
-float: left;
-padding: 10px;
-text-align: center;
--moz-box-shadow: 0 0 10px #777777;
--webkit-box-shadow: 0 0 10px #777777;
-box-shadow: 0 0 10px #777777;
-background-color: rgb(244, 141, 70);
-border-radius: 10px;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
-background: rgb(241,101,48); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(241,101,48,1) 2%, rgba(244,141,70,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,rgba(241,101,48,1)), color-stop(100%,rgba(244,141,70,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f16530', endColorstr='#f48d46',GradientType=0 ); /* IE6-9 */
-margin: 10px;
-
-}
-
 .title{
   color: white;
   font-size: 2em;
@@ -74,6 +48,41 @@ a:hover {
  padding: 30px 30px;
 }
 
+.float_center {
+  float: right;
+
+  position: relative;
+  left: -50%; /* or right 50% */
+  text-align: left;
+}
+.float_center > .child {
+  position: relative;
+  left: 50%;
+width: 300px;
+margin: auto;
+float: left;
+padding: 10px;
+text-align: center;
+-moz-box-shadow: 0 0 10px #777777;
+-webkit-box-shadow: 0 0 10px #777777;
+box-shadow: 0 0 10px #777777;
+background-color: rgb(244, 141, 70);
+border-radius: 10px;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+background: rgb(241,101,48); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(241,101,48,1) 2%, rgba(244,141,70,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,rgba(241,101,48,1)), color-stop(100%,rgba(244,141,70,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(241,101,48,1) 2%,rgba(244,141,70,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f16530', endColorstr='#f48d46',GradientType=0 ); /* IE6-9 */
+margin: 10px;
+}
+
+
+
 </style>
 <p class="navbar-text pull-right">
 
@@ -89,9 +98,9 @@ a:hover {
 
 <h1> Articles </h1>
 <div class="create"><%= link_to 'New Article', new_article_path %></div>
-
+<div class ="float_center">
   <% @articles.each do |a|%>
-    <div class ="article">
+    <div class ="child">
       <p class="title"><%= a.title %> </p>
       <p><%= link_to 'Show', article_path(a) %>
         <%= link_to 'Edit', edit_article_path(a)%>
@@ -100,3 +109,4 @@ a:hover {
     </div>
 
   <%end%>
+</div>
