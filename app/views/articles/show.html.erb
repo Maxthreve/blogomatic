@@ -4,7 +4,18 @@
   width: 50%
 
 }
-.center_text{
+
+.float_center {
+  float: right;
+
+  position: relative;
+  left: -50%; /* or right 50% */
+  text-align: left;
+}
+
+.float_center > .child {
+  position: relative;
+  left: 50%;
   float: left;
   color: white;
   width: 300px;
@@ -59,24 +70,22 @@ a:hover {
 
 </style>
 <div class ="center_image"><img src="<%= image_path("Kindrd_food_notag_300.jpg") %>" width="640"  alt "the knindrd logo" align = "middle"/></div>
-
-<div class ="center_text">
-<p> <%= @article.title %> </p>
-<p> <%= @article.content %> </p>
-<p> <%= link_to 'Edit', edit_article_path(@article)%><%= link_to 'Back to Articles', articles_path %></p>
-</div>
-
-<div class="center_text">
-
-  <form action="<%= article_articles_tags_url(@article) %>" method="post">
-    <%= auth_token %>
-    <%Tag.find(:all).each do |tag| %>
-    <div>
-      <%= check_box_tag "article[tag_ids][]", tag.id, @article.tags.include?(tag)%>
-      <%= tag.name %>
-    </div>
-    <%end%>
-    <button> Add Tags </button>
-  </form>
-
+<div class="float_center">
+  <div class ="child">
+    <p> <%= @article.title %> </p>
+    <p> <%= @article.content %> </p>
+    <p> <%= link_to 'Edit', edit_article_path(@article)%><%= link_to 'Back to Articles', articles_path %></p>
+  </div>
+  <div class="child">
+    <form action="<%= article_articles_tags_url(@article) %>" method="post">
+      <%= auth_token %>
+      <%Tag.find(:all).each do |tag| %>
+      <div>
+        <%= check_box_tag "article[tag_ids][]", tag.id, @article.tags.include?(tag)%>
+        <%= tag.name %>
+      </div>
+      <%end%>
+      <button> Add Tags </button>
+    </form>
+  </div>
 </div>
